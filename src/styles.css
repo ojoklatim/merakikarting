@@ -174,3 +174,14 @@
     to { opacity: 1; transform: none; }
   }
 }
+
+/* Minimalist override — sharp edges everywhere */
+@layer utilities {
+  [class*="rounded"] { border-radius: 0 !important; }
+  .text-gradient-accent {
+    background: none !important;
+    -webkit-text-fill-color: var(--color-accent-gold) !important;
+    color: var(--color-accent-gold) !important;
+  }
+  .checkered-strip { display: none; }
+}
