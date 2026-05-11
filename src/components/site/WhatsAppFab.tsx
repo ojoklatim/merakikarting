@@ -7,7 +7,7 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="pulse-ring fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full flex items-center justify-center text-white shadow-lg"
+      className="pulse-ring keep-round fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full flex items-center justify-center text-white shadow-lg"
       style={{ background: "#25D366" }}
     >
       <MessageCircle size={26} />

@@ -48,7 +48,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0rem;
 
   --background: #1A0A14;
   --foreground: #FFFFFF;
@@ -122,18 +122,18 @@
 }
 
 @utility gold-stroke {
-  height: 3px;
-  width: 120px;
-  background: linear-gradient(90deg, #D4001F 0%, #F05A00 50%, #F5A800 100%);
-  border-radius: 2px;
+  height: 2px;
+  width: 64px;
+  background: var(--color-accent-gold);
+  border-radius: 0;
 }
 
 @utility bg-gradient-hero {
-  background: linear-gradient(135deg, #8B1A4A 0%, #4A0A2A 50%, #1A0A14 100%);
+  background: #1A0A14;
 }
 
 @utility bg-gradient-accent {
-  background: linear-gradient(90deg, #D4001F 0%, #F05A00 50%, #F5A800 100%);
+  background: var(--color-accent-gold);
 }
 
 @utility surface-light {
@@ -149,17 +149,7 @@
   }
 
   .mesh-bg {
-    background:
-      radial-gradient(at 20% 20%, rgba(212, 0, 31, 0.35) 0, transparent 50%),
-      radial-gradient(at 80% 0%, rgba(240, 90, 0, 0.25) 0, transparent 50%),
-      radial-gradient(at 60% 80%, rgba(139, 26, 74, 0.45) 0, transparent 60%),
-      linear-gradient(135deg, #2D0E22 0%, #1A0A14 100%);
-    animation: mesh-shift 18s ease-in-out infinite alternate;
-  }
-
-  @keyframes mesh-shift {
-    0% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
-    100% { background-position: 30% 20%, 70% 30%, 40% 70%, 0 0; }
+    background: #1A0A14;
   }
 
   @keyframes pulse-ring {
@@ -183,4 +173,16 @@
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: none; }
   }
+}
+
+/* Minimalist override — sharp edges everywhere */
+@layer utilities {
+  [class*="rounded"]:not(.keep-round) { border-radius: 0 !important; }
+  .pulse-ring::after { border-radius: 9999px !important; }
+  .text-gradient-accent {
+    background: none !important;
+    -webkit-text-fill-color: var(--color-accent-gold) !important;
+    color: var(--color-accent-gold) !important;
+  }
+  .checkered-strip { display: none; }
 }
