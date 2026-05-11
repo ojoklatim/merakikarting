@@ -177,7 +177,8 @@
 
 /* Minimalist override — sharp edges everywhere */
 @layer utilities {
-  [class*="rounded"] { border-radius: 0 !important; }
+  [class*="rounded"]:not(.keep-round) { border-radius: 0 !important; }
+  .pulse-ring::after { border-radius: 9999px !important; }
   .text-gradient-accent {
     background: none !important;
     -webkit-text-fill-color: var(--color-accent-gold) !important;
