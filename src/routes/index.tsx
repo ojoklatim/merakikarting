@@ -59,7 +59,7 @@ function Home() {
         <div className="container-prose grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             ["6", "Days / Week"],
-            ["15 min", "From UGX 75K"],
+            ["15 min", "From UGX 50K"],
             ["4.4 ★", "Google Rating"],
             ["Est. 2022", "Kampala, Uganda"],
           ].map(([big, small], i) => (
@@ -152,9 +152,9 @@ function Home() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {[
             "https://images.quicket.co.za/0454876_0.png",
-            "https://images.quicket.co.za/0454878_0.jpeg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB34eFOPY4sF8LBWkRziDOTXQtRT1Y6CIuZQ&s",
             "https://images.quicket.co.za/0454873_0.png",
-            "https://images.quicket.co.za/0454878_0.jpeg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18dDcjs0KiRFiNhN19LgiYF3TxJ5RhOzLXw&s",
             "https://images.quicket.co.za/0454876_0.png",
             "https://images.quicket.co.za/0454873_0.png",
           ].map((src, i) => (

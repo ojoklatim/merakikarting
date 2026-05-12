@@ -20,94 +20,116 @@ export function Nav() {
   }, [open]);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style={{ background: "rgba(26,10,20,0.85)", borderBottom: "1px solid var(--color-border)" }}>
-      <div className="container-prose flex items-center justify-between h-16">
-        <Link to="/" className="flex flex-col leading-none" onClick={() => setOpen(false)}>
-          <span className="font-display italic font-black tracking-tight text-lg">MERAKI KARTING</span>
-          <span className="bg-gradient-accent h-[2px] w-16 mt-1" />
-        </Link>
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors"
-              activeProps={{ className: "text-[color:var(--color-accent-gold)]" }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="hidden md:block">
-          <Link
-            to="/book"
-            className="inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-gradient-accent hover:opacity-90 transition"
-          >
-            Book Now
+    <>
+      <header className={`fixed top-0 inset-x-0 h-16 flex items-center z-[1000] transition-colors duration-300 ${open ? 'bg-[#1A0A14]' : 'bg-[#1A0A14]/85 backdrop-blur-md'}`} style={{ borderBottom: "1px solid var(--color-border)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+          <Link to="/" className="flex flex-col leading-none" onClick={() => setOpen(false)}>
+            <span className="font-display italic font-black tracking-tight text-lg whitespace-nowrap text-white">MERAKI KARTING</span>
+            <span className="bg-gradient-accent h-[2px] w-16 mt-1" />
           </Link>
-        </div>
-        <button className="md:hidden text-white p-2 -mr-2" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+          
+          <nav className="hidden md:flex items-center gap-8">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+                activeProps={{ className: "text-[color:var(--color-accent-gold)]" }}
+                activeOptions={{ exact: l.to === "/" }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
-      {open && (
-        <div className="md:hidden fixed inset-0 top-16 bg-[#1A0A14] z-40 overflow-y-auto">
-          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-accent" />
-
-          <div className="container-prose pt-8 pb-6">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-text-muted)] mb-4">Menu</div>
-            <nav className="flex flex-col">
-              {links.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  activeOptions={{ exact: l.to === "/" }}
-                  className="group flex items-baseline gap-4 py-4 border-b border-[color:var(--color-border)] hover:pl-2 transition-all"
-                  activeProps={{ className: "text-[color:var(--color-accent-gold)]" }}
-                >
-                  <span className="text-xs font-mono text-[color:var(--color-text-muted)] group-hover:text-[color:var(--color-accent-gold)] w-6">{l.num}</span>
-                  <span className="text-3xl font-display italic font-black text-white group-[.active]:text-[color:var(--color-accent-gold)]">{l.label}</span>
-                </Link>
-              ))}
-            </nav>
+          <div className="hidden md:block">
+            <Link
+              to="/book"
+              className="inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-gradient-accent hover:opacity-90 transition"
+            >
+              Book Now
+            </Link>
           </div>
 
-          <div className="container-prose py-6">
+          <button 
+            type="button"
+            className="md:hidden flex items-center gap-2 text-[color:var(--color-accent-gold)] px-3 py-2 -mr-2 bg-white/5 border border-[color:var(--color-accent-gold)]/20 active:bg-white/10 transition-colors" 
+            aria-label="Menu" 
+            aria-expanded={open} 
+            onClick={() => setOpen(!open)}
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{open ? 'Close' : 'Menu'}</span>
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </header>
+
+      <div 
+        className={`md:hidden fixed inset-0 bg-[#1A0A14] z-[999] overflow-y-auto transition-all duration-300 ease-in-out ${
+          open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+        style={{ height: '100dvh', paddingTop: '64px' }}
+      >
+        <div className="px-4 py-8 pb-24">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-text-muted)] mb-6 px-2">Menu</div>
+          <nav className="flex flex-col">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                activeOptions={{ exact: l.to === "/" }}
+                className="group flex items-baseline gap-4 py-4 px-2 border-b border-[color:var(--color-border)] hover:bg-white/5 transition-all"
+                activeProps={{ className: "text-[color:var(--color-accent-gold)]" }}
+              >
+                <span className="text-xs font-mono text-[color:var(--color-text-muted)] group-hover:text-[color:var(--color-accent-gold)] w-6">{l.num}</span>
+                <span className="text-3xl font-display italic font-black text-white group-[.active]:text-[color:var(--color-accent-gold)]">{l.label}</span>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="py-8 space-y-4">
             <Link
               to="/book"
               onClick={() => setOpen(false)}
-              className="block text-center px-6 py-4 font-bold text-white bg-gradient-accent mb-3"
+              className="block text-center px-6 py-4 font-bold text-white bg-gradient-accent"
             >
               Reserve a Slot
             </Link>
             <a
               href="https://wa.me/256763170060?text=Hi!%20I'd%20like%20to%20book%20a%20karting%20session."
-              className="flex items-center justify-center gap-2 px-6 py-4 font-semibold text-white border border-[color:var(--color-border)]"
+              className="flex items-center justify-center gap-2 px-6 py-4 font-semibold text-white border border-[color:var(--color-border)] hover:bg-white/5 transition-colors"
             >
               <MessageCircle size={18} /> Chat on WhatsApp
             </a>
           </div>
 
-          <div className="container-prose pb-6">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-text-muted)] mb-3">Visit</div>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li className="flex items-start gap-2"><MapPin size={16} className="text-[color:var(--color-accent-gold)] mt-0.5 shrink-0" /><span>Old Portbell Rd, Bugolobi, Kampala</span></li>
-              <li className="flex items-center gap-2"><Phone size={16} className="text-[color:var(--color-accent-gold)] shrink-0" /><span>+256 763 170060</span></li>
+          <div className="py-6 border-t border-[color:var(--color-border)]">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-text-muted)] mb-4 px-2">Visit Us</div>
+            <ul className="space-y-4 text-sm text-white/80 px-2">
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-[color:var(--color-accent-gold)] mt-0.5 shrink-0" />
+                <span>Old Portbell Rd, Bugolobi, Kampala</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-[color:var(--color-accent-gold)] shrink-0" />
+                <span>+256 763 170060</span>
+              </li>
             </ul>
           </div>
 
-          <div className="container-prose pb-10 flex items-center justify-between border-t border-[color:var(--color-border)] pt-6">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-text-muted)]">Open Tue–Sun · 9AM–7PM</span>
+          <div className="flex items-center justify-between border-t border-[color:var(--color-border)] pt-8 px-2">
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-text-muted)]">Open Tue–Sun</span>
+              <span className="text-xs text-white/60">9AM – 7PM</span>
+            </div>
             <div className="flex gap-2">
-              <a href="https://instagram.com/merakikarting" aria-label="Instagram" className="p-2 border border-[color:var(--color-border)] hover:bg-white/5"><Instagram size={16} /></a>
-              <a href="#" aria-label="Facebook" className="p-2 border border-[color:var(--color-border)] hover:bg-white/5"><Facebook size={16} /></a>
+              <a href="https://instagram.com/merakikarting" aria-label="Instagram" className="p-3 border border-[color:var(--color-border)] hover:bg-white/5 transition-colors text-white"><Instagram size={20} /></a>
+              <a href="#" aria-label="Facebook" className="p-3 border border-[color:var(--color-border)] hover:bg-white/5 transition-colors text-white"><Facebook size={20} /></a>
             </div>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   );
 }

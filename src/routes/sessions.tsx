@@ -26,10 +26,37 @@ function PageHero({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
-const tiers = [
-  { name: "Sprint", time: "15 min", price: "UGX 75,000", best: "First-timers", featured: false },
-  { name: "Pro", time: "30 min", price: "UGX 100,000", best: "Competitive racers", featured: true },
-  { name: "Group", time: "Custom", price: "Call us", best: "6+ people", featured: false },
+const pricingData = [
+  {
+    category: "Single Racer Karts",
+    types: [
+      { 
+        name: "Cadets", 
+        weekday: { "15min": "50,000", "30min": "75,000" }, 
+        weekend: { "15min": "65,000", "30min": "100,000" } 
+      },
+      { 
+        name: "Pro-Racer", 
+        weekday: { "15min": "50,000", "30min": "75,000" }, 
+        weekend: { "15min": "65,000", "30min": "100,000" } 
+      },
+    ]
+  },
+  {
+    category: "Two Seater Karts",
+    types: [
+      { 
+        name: "Individual & Marshall", 
+        weekday: { "15min": "50,000", "30min": "75,000" }, 
+        weekend: { "15min": "65,000", "30min": "100,000" } 
+      },
+      { 
+        name: "Self Driven", 
+        weekday: { "15min": "100,000", "30min": "150,000" }, 
+        weekend: { "15min": "130,000", "30min": "200,000" } 
+      },
+    ]
+  }
 ];
 
 function SessionsPage() {
@@ -39,31 +66,85 @@ function SessionsPage() {
 
       <Section>
         <div className="text-center mb-16">
-          <Eyebrow>Pricing</Eyebrow>
+          <Eyebrow>Standard Pricing</Eyebrow>
           <h2 className="headline-display text-4xl md:text-6xl">Find your perfect race.</h2>
+          <p className="text-[color:var(--color-text-muted)] mt-4">All sessions have a 30-day validity.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {tiers.map((t) => (
-            <div
-              key={t.name}
-              className={`relative rounded-2xl p-8 bg-[color:var(--color-bg-card)] transition hover:-translate-y-1 ${t.featured ? "md:scale-105 ring-1 ring-[color:var(--color-accent-gold)]/40" : ""}`}
-              style={t.featured ? { boxShadow: "0 25px 60px -20px rgba(212,0,31,0.5)" } : {}}
-            >
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-accent rounded-t-2xl" />
-              {t.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold rounded-full bg-gradient-accent text-white">
-                  Most Popular
-                </div>
-              )}
-              <h3 className="font-display italic font-black text-3xl">{t.name}</h3>
-              <div className="text-[color:var(--color-text-muted)] mt-1 text-sm uppercase tracking-widest">{t.time}</div>
-              <div className="font-accent text-5xl mt-6 text-[color:var(--color-accent-gold)]">{t.price}</div>
-              <div className="text-sm text-[color:var(--color-text-muted)] mt-2">Best for {t.best}</div>
-              <a href="https://wa.me/256763170060" className="mt-8 block text-center px-6 py-3 rounded-full font-semibold bg-gradient-accent text-white">
-                Book {t.name}
-              </a>
+
+        <div className="space-y-16 max-w-5xl mx-auto">
+          {pricingData.map((cat) => (
+            <div key={cat.category}>
+              <h3 className="font-display italic font-black text-3xl mb-8 text-center md:text-left border-l-4 border-[color:var(--color-accent-gold)] pl-4">{cat.category}</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {cat.types.map((t) => (
+                  <div key={t.name} className="bg-[color:var(--color-bg-card)] rounded-2xl overflow-hidden border border-[color:var(--color-border)]">
+                    <div className="bg-gradient-accent p-4">
+                      <h4 className="font-display italic font-black text-2xl text-white">{t.name}</h4>
+                    </div>
+                    <div className="p-6 space-y-6">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-4">
+                          <div className="text-[10px] uppercase tracking-widest text-[color:var(--color-text-muted)]">Tue – Thu</div>
+                          <div>
+                            <div className="text-sm text-white/60">15 Minutes</div>
+                            <div className="text-2xl font-accent text-[color:var(--color-accent-gold)]">UGX {t.weekday["15min"]}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-white/60">30 Minutes</div>
+                            <div className="text-2xl font-accent text-[color:var(--color-accent-gold)]">UGX {t.weekday["30min"]}</div>
+                          </div>
+                        </div>
+                        <div className="space-y-4 border-l border-[color:var(--color-border)] pl-4">
+                          <div className="text-[10px] uppercase tracking-widest text-[color:var(--color-accent-gold)]">Fri – Sun</div>
+                          <div>
+                            <div className="text-sm text-white/60">15 Minutes</div>
+                            <div className="text-2xl font-accent text-white">UGX {t.weekend["15min"]}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-white/60">30 Minutes</div>
+                            <div className="text-2xl font-accent text-white">UGX {t.weekend["30min"]}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="/book" className="block text-center px-6 py-3 bg-white/5 border border-white/10 hover:bg-white/10 transition rounded-full text-sm font-bold uppercase tracking-widest">
+                        Book {t.name}
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
+
+          {/* GrandPrix Section */}
+          <div className="relative rounded-2xl bg-[color:var(--color-bg-card)] border-2 border-[color:var(--color-accent-gold)] overflow-hidden">
+            <div className="grid md:grid-cols-[1fr_auto] items-center">
+              <div className="p-8 md:p-12">
+                <div className="inline-block px-3 py-1 bg-[color:var(--color-accent-gold)] text-[#1A0A14] text-[10px] font-black uppercase tracking-widest mb-4">Group Event</div>
+                <h3 className="headline-display text-5xl md:text-6xl mb-4">GrandPrix</h3>
+                <p className="text-[color:var(--color-text-muted)] mb-8 text-lg max-w-md">
+                  The ultimate group competition. Required: 6–8 people. 
+                  Includes Warm-up, Practice, Qualifiers, and a Final Race.
+                </p>
+                <div className="flex flex-wrap gap-8">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-widest text-[color:var(--color-text-muted)] mb-1">Format</div>
+                    <div className="text-lg font-bold">4-Stage Race</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] uppercase tracking-widest text-[color:var(--color-text-muted)] mb-1">Pricing</div>
+                    <div className="text-3xl font-accent text-[color:var(--color-accent-gold)]">UGX 150,000 <span className="text-sm opacity-60">/ Person</span></div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gradient-accent p-8 md:p-12 h-full flex flex-col justify-center items-center text-center">
+                <Trophy size={48} className="text-white mb-6" />
+                <a href="https://wa.me/256763170060?text=Hi!%20I'd%20like%20to%20book%20a%20GrandPrix%20session%20for%20a%20group." className="px-8 py-4 bg-[#1A0A14] text-white font-bold rounded-full hover:bg-black transition whitespace-nowrap">
+                  Book GrandPrix
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 

@@ -19,7 +19,7 @@ const blocks = [
   { eyebrow: "Location", title: "Bugolobi, Kampala", body: "Located on Old Portbell Road in the heart of Kampala — easy access from the city.", img: "https://images.quicket.co.za/0454873_0.png" },
   { eyebrow: "Surface", title: "Pro-grade tarmac", body: "Smooth, grippy tarmac engineered for karting. Excellent traction in dry and wet.", img: "https://images.quicket.co.za/0454876_0.png" },
   { eyebrow: "Safety", title: "FIA-aligned barriers", body: "Tyre walls, run-off zones, and trained marshals on every shift.", img: "https://images.quicket.co.za/0454878_0.jpeg" },
-  { eyebrow: "Fleet", title: "Performance karts", body: "A modern fleet maintained to the highest standard, suitable for ages 7 and up.", img: "https://images.quicket.co.za/0454873_0.png" },
+  { eyebrow: "Fleet", title: "Performance karts", body: "A modern fleet maintained to the highest standard, suitable for ages 7 and up.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB34eFOPY4sF8LBWkRziDOTXQtRT1Y6CIuZQ&s" },
 ];
 
 function TrackPage() {

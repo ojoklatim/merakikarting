@@ -28,24 +28,27 @@ function AboutPage() {
       </section>
 
       <Section light>
-        <div className="max-w-3xl mx-auto text-[#1A0A14] text-lg leading-relaxed space-y-6">
-          <p>
-            Meraki — a Greek word meaning to do something with soul, creativity, and love.
-            That's exactly what we set out to do when we built Uganda's first proper go-karting venue.
-          </p>
-          <p>
-            Founded in 2022 by motorsport enthusiasts who grew tired of watching the sport from
-            afar, Meraki Karting opened its doors in Bugolobi with one mission: bring world-class
-            karting to East Africa, and make it accessible to everyone.
-          </p>
-          <p>
-            Today, we host the official Uganda National Karting Championship, run weekly community
-            race nights, and welcome thousands of first-time drivers each year. We've been featured
-            on NTV Uganda and grown a community of over 8,900 racers and fans.
-          </p>
-          <p className="font-display italic font-black text-3xl text-center !mt-12">
-            "Speed is universal. Joy is universal. We just built the place where they meet."
-          </p>
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="text-[#1A0A14] text-lg leading-relaxed space-y-6">
+            <p>
+              Meraki — a Greek word meaning to do something with soul, creativity, and love.
+              That's exactly what we set out to do when we built Uganda's first proper go-karting venue.
+            </p>
+            <p>
+              Founded in 2022 by motorsport enthusiasts who grew tired of watching the sport from
+              afar, Meraki Karting opened its doors in Bugolobi with one mission: bring world-class
+              karting to East Africa, and make it accessible to everyone.
+            </p>
+            <p>
+              Today, we host the official Uganda National Karting Championship, run weekly community
+              race nights, and welcome thousands of first-time drivers each year.
+            </p>
+          </div>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18dDcjs0KiRFiNhN19LgiYF3TxJ5RhOzLXw&s"
+            alt="Meraki venue"
+            className="rounded-2xl w-full aspect-[4/3] object-cover shadow-xl"
+          />
         </div>
       </Section>
 

@@ -14,10 +14,16 @@ export const Route = createFileRoute("/book")({
   ssr: false,
 });
 
-type Tier = { id: "sprint" | "pro"; name: string; minutes: number; price: string };
+type Tier = { id: string; name: string; minutes: number; weekdayPrice: string; weekendPrice: string };
 const TIERS: Tier[] = [
-  { id: "sprint", name: "Sprint", minutes: 15, price: "UGX 75,000" },
-  { id: "pro", name: "Pro", minutes: 30, price: "UGX 100,000" },
+  { id: "cadet-15", name: "Cadets (15m)", minutes: 15, weekdayPrice: "UGX 50,000", weekendPrice: "UGX 65,000" },
+  { id: "cadet-30", name: "Cadets (30m)", minutes: 30, weekdayPrice: "UGX 75,000", weekendPrice: "UGX 100,000" },
+  { id: "pro-15", name: "Pro-Racer (15m)", minutes: 15, weekdayPrice: "UGX 50,000", weekendPrice: "UGX 65,000" },
+  { id: "pro-30", name: "Pro-Racer (30m)", minutes: 30, weekdayPrice: "UGX 75,000", weekendPrice: "UGX 100,000" },
+  { id: "two-ind-15", name: "Two-Seater: Indiv (15m)", minutes: 15, weekdayPrice: "UGX 50,000", weekendPrice: "UGX 65,000" },
+  { id: "two-ind-30", name: "Two-Seater: Indiv (30m)", minutes: 30, weekdayPrice: "UGX 75,000", weekendPrice: "UGX 100,000" },
+  { id: "two-self-15", name: "Two-Seater: Self (15m)", minutes: 15, weekdayPrice: "UGX 100,000", weekendPrice: "UGX 130,000" },
+  { id: "two-self-30", name: "Two-Seater: Self (30m)", minutes: 30, weekdayPrice: "UGX 150,000", weekendPrice: "UGX 200,000" },
 ];
 
 type Status = "pending" | "confirmed" | "rejected";
@@ -42,6 +48,10 @@ function pad(n: number) { return n.toString().padStart(2, "0"); }
 function ymd(d: Date) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
 function toMin(t: string) { const [h, m] = t.split(":").map(Number); return h * 60 + m; }
 function fromMin(m: number) { return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`; }
+function getIsWeekend(dateStr: string) {
+  const day = new Date(dateStr).getDay();
+  return day === 0 || day === 5 || day === 6; // Sun, Fri, Sat
+}
 
 function loadBookings(): Booking[] {
   if (typeof window === "undefined") return [];
@@ -128,7 +138,9 @@ function BookPage() {
     saveBookings(next);
     setSlot(null);
     setForm({ name: "", phone: "" });
-    const text = `Hi Meraki!%0ANew booking request%0AName: ${newB.name}%0APhone: ${newB.phone}%0ATier: ${tier.name} (${tier.minutes}min)%0ADate: ${newB.date}%0ATime: ${newB.start}`;
+    const isWeekend = getIsWeekend(selectedDate);
+    const currentPrice = isWeekend ? tier.weekendPrice : tier.weekdayPrice;
+    const text = `Hi Meraki!%0ANew booking request%0AName: ${newB.name}%0APhone: ${newB.phone}%0ATier: ${tier.name}%0ADate: ${newB.date}%0ATime: ${newB.start}%0APrice: ${currentPrice}`;
     window.open(`https://wa.me/256763170060?text=${text}`, "_blank");
   };
 
@@ -200,18 +212,22 @@ function BookPage() {
           {/* Slot picker + form */}
           <div>
             <Eyebrow>Tier</Eyebrow>
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              {TIERS.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => { setTier(t); setSlot(null); }}
-                  className={`p-4 text-left border transition ${tier.id === t.id ? "border-[color:var(--color-accent-gold)] bg-[color:var(--color-accent-gold)]/5" : "border-[color:var(--color-border)] hover:border-white/30"}`}
-                >
-                  <div className="font-display italic font-black text-xl">{t.name}</div>
-                  <div className="text-xs text-[color:var(--color-text-muted)] uppercase tracking-widest mt-1">{t.minutes} min</div>
-                  <div className="text-[color:var(--color-accent-gold)] font-accent text-2xl mt-2">{t.price}</div>
-                </button>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {TIERS.map((t) => {
+                const isWeekend = getIsWeekend(selectedDate);
+                const currentPrice = isWeekend ? t.weekendPrice : t.weekdayPrice;
+                return (
+                  <button
+                    key={t.id}
+                    onClick={() => { setTier(t); setSlot(null); }}
+                    className={`p-4 text-left border transition ${tier.id === t.id ? "border-[color:var(--color-accent-gold)] bg-[color:var(--color-accent-gold)]/5" : "border-[color:var(--color-border)] hover:border-white/30"}`}
+                  >
+                    <div className="font-display italic font-black text-lg">{t.name}</div>
+                    <div className="text-[10px] text-[color:var(--color-text-muted)] uppercase tracking-widest mt-1">{t.minutes} min</div>
+                    <div className="text-[color:var(--color-accent-gold)] font-accent text-xl mt-2">{currentPrice}</div>
+                  </button>
+                );
+              })}
             </div>
 
             <Eyebrow>Times — {new Date(selectedDate + "T00:00").toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}</Eyebrow>
