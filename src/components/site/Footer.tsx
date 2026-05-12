@@ -35,9 +35,9 @@ export function Footer() {
         <div>
           <h4 className="eyebrow mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-white/80">
-            <li className="flex items-start gap-2"><MapPin size={16} className="text-[color:var(--color-accent-gold)] mt-0.5" /> Old Portbell Rd, Bugolobi, Kampala</li>
-            <li className="flex items-center gap-2"><Phone size={16} className="text-[color:var(--color-accent-gold)]" /> +256 763 170060</li>
-            <li className="flex items-center gap-2"><Mail size={16} className="text-[color:var(--color-accent-gold)]" /> hello@merakikarting.com</li>
+            <li className="flex items-start gap-2"><MapPin size={16} className="text-[color:var(--color-accent-gold)] mt-0.5" /><span>Old Portbell Rd, Bugolobi, Kampala</span></li>
+            <li className="flex items-center gap-2"><Phone size={16} className="text-[color:var(--color-accent-gold)]" /><span>+256 763 170060</span></li>
+            <li className="flex items-center gap-2"><Mail size={16} className="text-[color:var(--color-accent-gold)]" /><span>hello@merakikarting.com</span></li>
           </ul>
         </div>
         <div>
