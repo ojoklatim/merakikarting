@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Section, Eyebrow, GoldStroke } from "@/components/site/Section";
-import { ChevronLeft, ChevronRight, Check, Clock, User, Phone, Trash2 } from "lucide-react seed".replace(" seed", "")  as any; // placeholder fix
+import { ChevronLeft, ChevronRight, Check, Clock, Trash2 } from "lucide-react";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
