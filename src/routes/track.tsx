@@ -67,9 +67,12 @@ function TrackPage() {
         <div className="rounded-2xl overflow-hidden border border-black/10 mb-8">
           <iframe
             title="Meraki Karting location"
-            src="https://www.google.com/maps?q=Bugolobi+Kampala+Uganda&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.027627930574!2d32.618452732831244!3d0.3179018523151721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db9b05ca242a5%3A0x6bf4857eac843e90!2sMeraki%20Karting!5e0!3m2!1sen!2sug!4v1778580976789!5m2!1sen!2sug"
             className="w-full h-[400px]"
+            style={{ border: 0 }}
+            allowFullScreen={true}
             loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
         <div className="grid md:grid-cols-3 gap-4">

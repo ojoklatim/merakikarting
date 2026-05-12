@@ -92,7 +92,7 @@ function Home() {
             </p>
           </div>
           <img
-            src="https://images.quicket.co.za/0454873_0.png"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB34eFOPY4sF8LBWkRziDOTXQtRT1Y6CIuZQ&s"
             alt="Meraki venue"
             className="rounded-2xl w-full aspect-[4/3] object-cover"
           />
@@ -156,7 +156,7 @@ function Home() {
             "https://images.quicket.co.za/0454873_0.png",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18dDcjs0KiRFiNhN19LgiYF3TxJ5RhOzLXw&s",
             "https://images.quicket.co.za/0454876_0.png",
-            "https://images.quicket.co.za/0454873_0.png",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB34eFOPY4sF8LBWkRziDOTXQtRT1Y6CIuZQ&s",
           ].map((src, i) => (
             <a key={i} href="https://instagram.com/merakikarting" className="group relative block aspect-square overflow-hidden rounded-xl">
               <img src={src} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
