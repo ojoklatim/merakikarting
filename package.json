@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "postbuild": "cp dist/server/server.js dist/client/_worker.js && cp dist/server/assets/* dist/client/assets/ && rm -f dist/client/wrangler.json dist/server/wrangler.json",
+    "postbuild": "cp dist/server/server.js dist/client/_worker.js && cp dist/server/assets/* dist/client/assets/ && node -e \"const f='dist/client/wrangler.json'; if(require('fs').existsSync(f)){ const j=JSON.parse(require('fs').readFileSync(f)); j.compatibility_flags=['nodejs_compat']; j.compatibility_date='2024-11-18'; delete j.triggers; delete j.definedEnvironments; delete j.ai_search_namespaces; delete j.ai_search; delete j.secrets_store_secrets; delete j.artifacts; delete j.unsafe_hello_world; delete j.flagship; delete j.worker_loaders; delete j.ratelimits; delete j.vpc_services; delete j.vpc_networks; delete j.python_modules; if(j.dev) { delete j.dev.enable_containers; delete j.dev.generate_types; } require('fs').writeFileSync(f, JSON.stringify(j)); }\"",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
