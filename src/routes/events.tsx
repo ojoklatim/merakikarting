@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow, GoldStroke } from "@/components/site/Section";
-import { Trophy, Cake, Building2, PartyPopper } from "lucide-react";
+import { Trophy, Building2, PartyPopper, Users } from "lucide-react";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
     meta: [
       { title: "Events & Race Days — Meraki Karting" },
-      { name: "description", content: "National championships, birthdays, corporate days, and public race nights at Meraki Karting." },
+      { name: "description", content: "National championships, group race nights, corporate days, and private track hire at Meraki Karting." },
       { property: "og:title", content: "Race Days & Events — Meraki Karting" },
       { property: "og:description", content: "Host your event at Uganda's premier karting venue." },
       { property: "og:image", content: "https://images.quicket.co.za/0454878_0.jpeg" },
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/events")({
 });
 
 function EventsPage() {
-  const [form, setForm] = useState({ name: "", phone: "", type: "Birthday", date: "", size: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", type: "Corporate", date: "", size: "", message: "" });
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hi Meraki!%0AEvent Inquiry%0AName: ${form.name}%0APhone: ${form.phone}%0AType: ${form.type}%0ADate: ${form.date}%0AGroup size: ${form.size}%0A%0A${form.message}`;
@@ -42,7 +42,7 @@ function EventsPage() {
         <div className="grid sm:grid-cols-2 gap-6">
           {[
             { icon: <Trophy />, t: "National Championship", b: "Uganda's official karting championship season." },
-            { icon: <Cake />, t: "Birthday Packages", b: "Custom packages for kids and adults — race, food, photos." },
+            { icon: <Users />, t: "Group Packages", b: "Custom packages for large groups — racing, catering, and photography." },
             { icon: <Building2 />, t: "Corporate Race Days", b: "Team-building with adrenaline. Private track hire available." },
             { icon: <PartyPopper />, t: "Open Public Sessions", b: "Drop in any time during open hours and race." },
           ].map((c) => (
@@ -102,7 +102,7 @@ function EventsPage() {
                 onChange={(e) => setForm({ ...form, type: e.target.value })}
                 className="w-full bg-[color:var(--color-bg-card)] rounded-lg px-4 py-3 text-white outline-none border border-transparent focus:border-[color:var(--color-accent-gold)]"
               >
-                {["Birthday", "Corporate", "Private Hire", "Other"].map((o) => <option key={o}>{o}</option>)}
+                {["Corporate", "Private Hire", "Group Event", "Other"].map((o) => <option key={o}>{o}</option>)}
               </select>
             </div>
             <div>

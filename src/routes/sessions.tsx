@@ -207,7 +207,7 @@ function SessionsPage() {
       <section className="bg-gradient-hero py-24">
         <div className="container-prose text-center">
           <h2 className="headline-display text-4xl md:text-6xl">Racing is <span className="text-gradient-accent">better together.</span></h2>
-          <p className="text-[color:var(--color-text-muted)] mt-6 text-lg">Birthday parties · Corporate team days · Private track hire</p>
+          <p className="text-[color:var(--color-text-muted)] mt-6 text-lg">Group race nights · Corporate team days · Private track hire</p>
           <a href="https://wa.me/256763170060" className="mt-8 inline-block px-8 py-4 rounded-full font-bold bg-gradient-accent text-white">
             Plan a Group Event
           </a>
